@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Meera Gandhi">
-<meta name="dcterms.date" content="2023-11-11">
+<meta name="dcterms.date" content="2023-11-12">
 
 <title>Homework 7 - Creating a resume database</title>
 <style>
@@ -3363,7 +3363,7 @@ z-index: 1000;
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">November 11, 2023</p>
+      <p class="date">November 12, 2023</p>
     </div>
   </div>
   
@@ -3373,30 +3373,60 @@ z-index: 1000;
 
 </header>
 
-<p>(include a brief description of what is in this document)</p>
-<p>(Please clean up any comments that I included. This is a scaffold document.)</p>
-<p>GITHUB URL: &lt;your URL goes here!&gt;</p>
+<p>This document is an overview of the “users” database designed for homework 7.</p>
+<p>GITHUB URL: <a href="https://github.com/cmsc-vcu/cmsc508-fa2023-hw7-mgandhi812" class="uri">https://github.com/cmsc-vcu/cmsc508-fa2023-hw7-mgandhi812</a></p>
 <section id="overview-and-description" class="level2">
 <h2 class="anchored" data-anchor-id="overview-and-description">Overview and description</h2>
-<p>(briefly describe the project and the database)</p>
+<p>This project involves creating a resume database to manage information about people, their skills, and their roles. The database schema includes tables for skills, people, roles, and the relationships between them. In this document, I am describing the tables and creating sample queries.</p>
 </section>
 <section id="crows-foot-diagram" class="level2">
 <h2 class="anchored" data-anchor-id="crows-foot-diagram">Crows-foot diagram</h2>
-<p>(add a description of the diagram and what the reader is seeing.)</p>
+<p>This Crows-foot diagram illustrates the relationships within a resume database, showcasing entities such as people, skills, roles, along with their associations and attributes.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div>
 <div>
 <pre class="mermaid mermaid-js">erDiagram
-    CUSTOMER ||--o{ ORDER : places
-    CUSTOMER }|..|{ DELIVERY-ADDRESS : uses
-    CUSTOMER{
-        int id
-        string first_name
-        string last_name
+    PEOPLE ||--o{ SKILLS : has
+    SKILLS ||--o{ PEOPLE_SKILLS : describes
+    PEOPLE ||--o{ ROLES : holds
+    ROLES ||--o{ PEOPLE_ROLES : describes
+
+    PEOPLE{
+        int people_id
+        string people_first_name
+        string people_last_name
+        string email
+        string linkedin_url
+        string headshot_url
+        string discord_handle
+        string brief_bio
+        date date_joined
     }
-    DELIVERY-ADDRESS {
+    PEOPLE_SKILLS {
         int id
+        int skills_id
+        int people_id
+        date date_acquired
+    }
+    PEOPLE_ROLES {
+        int id
+        int people_id
+        int role_id
+        date date_assigned
+    }
+    SKILLS {
+        int id
+        string name
+        string description
+        string tag
+        string url
+        int time_committment
+    }
+    ROLES {
+        int id
+        string name
+        int sort_priority
     }
 </pre>
 </div>
