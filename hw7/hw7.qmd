@@ -423,5 +423,4 @@ df
 
 ## Reflection
 
-(Write a paragraph expressing your thoughts, feelings, and insights about your experience with this assignment.  Pause and breath before writing - I'm trying to encourage critical thinking and self-awareness while allowing you to explore the connections between theory and practice. And yes, delete this paragraph.)
-
+This assignment was a great introduction to interacting with databases without a GUI for me. I liked learning how to manually make and populate the tables in the database. I feel like the last assignment did a great job getting me adjusted for this assignment because I already had my environment set up, if we had to do all of this for the first time now I think that it would be overwhelming. Overall, while time consuming, I feel that this assignment was informative and did not feel like busy work.
