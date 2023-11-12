@@ -325,7 +325,7 @@ df
 ### List names and email addresses of people without skills
 
 ```{python}
-sql_skill_info = f"""
+sql_skills_noskills = f"""
 SELECT p.people_first_name, p.people_last_name, p.email
 FROM people p
 LEFT JOIN peopleskills ps ON p.people_id = ps.people_id
@@ -337,7 +337,7 @@ WHERE ps.id IS NULL;
 #| echo: false
 #| eval: true
 try:
-    df = pd.read_sql(sql,cnx)
+    df = pd.read_sql(sql_skills_noskills,cnx)
     df
 except Exception as e:
     message = str(e)
@@ -349,7 +349,7 @@ df
 ### List names and tags of unused skills
 
 ```{python}
-sql_skill_info = f"""
+sql_skill_unused = f"""
 SELECT s.name, s.tag
 FROM skills s
 LEFT JOIN peopleskills ps ON s.id = ps.skills_id
@@ -361,7 +361,7 @@ WHERE ps.id IS NULL;
 #| echo: false
 #| eval: true
 try:
-    df = pd.read_sql(sql,cnx)
+    df = pd.read_sql(sql_skill_unused,cnx)
     df
 except Exception as e:
     message = str(e)
@@ -373,7 +373,7 @@ df
 ### List people names and skill names with the BOSS role
 
 ```{python}
-sql_skill_info = f"""
+sql_skill_boss = f"""
 SELECT p.people_first_name, p.people_last_name, s.name
 FROM people p
 JOIN peopleroles pr ON p.people_id = pr.people_id
@@ -388,7 +388,7 @@ WHERE r.name = 'Boss';
 #| echo: false
 #| eval: true
 try:
-    df = pd.read_sql(sql,cnx)
+    df = pd.read_sql(sql_skill_boss,cnx)
     df
 except Exception as e:
     message = str(e)
@@ -400,7 +400,7 @@ df
 ### List ids and names of unused roles
 
 ```{python}
-sql_skill_info = f"""
+sql_skill_unused roles = f"""
 SELECT r.id, r.name
 FROM roles r
 LEFT JOIN peopleroles pr ON r.id = pr.role_id
@@ -412,7 +412,7 @@ WHERE pr.id IS NULL;
 #| echo: false
 #| eval: true
 try:
-    df = pd.read_sql(sql,cnx)
+    df = pd.read_sql(sql_skill_unused roles,cnx)
     df
 except Exception as e:
     message = str(e)
