@@ -10,11 +10,9 @@ format:
         code-copy: true
 ---
 
-(include a brief description of what is in this document)
+This document is an overview of the "users" database designed for homework 7.
 
-(Please clean up any comments that I included.  This is a scaffold document.)
-
-GITHUB URL:  <your URL goes here!>
+GITHUB URL:  <https://github.com/cmsc-vcu/cmsc508-fa2023-hw7-mgandhi812>
 
 ```{python}
 #| eval: true
@@ -92,24 +90,55 @@ except Exception as e:
 
 ## Overview and description
 
-(briefly describe the project and the database)
+This project involves creating a resume database to manage information about people, their skills, and their roles. The database schema includes tables for skills, people, roles, and the relationships between them. In this document, I am describing the tables and creating sample queries.
 
 ## Crows-foot diagram
 
-(add a description of the diagram and what the reader is seeing.)
+This Crows-foot diagram illustrates the relationships within a resume database, showcasing entities such as people, skills, roles, along with their associations and attributes.
 
 ```{mermaid}
 %%| echo: false
 erDiagram
-    CUSTOMER ||--o{ ORDER : places
-    CUSTOMER }|..|{ DELIVERY-ADDRESS : uses
-    CUSTOMER{
-        int id
-        string first_name
-        string last_name
+    PEOPLE ||--o{ SKILLS : has
+    SKILLS ||--o{ PEOPLE_SKILLS : describes
+    PEOPLE ||--o{ ROLES : holds
+    ROLES ||--o{ PEOPLE_ROLES : describes
+
+    PEOPLE{
+        int people_id
+        string people_first_name
+        string people_last_name
+        string email
+        string linkedin_url
+        string headshot_url
+        string discord_handle
+        string brief_bio
+        date date_joined
     }
-    DELIVERY-ADDRESS {
+    PEOPLE_SKILLS {
         int id
+        int skills_id
+        int people_id
+        date date_acquired
+    }
+    PEOPLE_ROLES {
+        int id
+        int people_id
+        int role_id
+        date date_assigned
+    }
+    SKILLS {
+        int id
+        string name
+        string description
+        string tag
+        string url
+        int time_committment
+    }
+    ROLES {
+        int id
+        string name
+        int sort_priority
     }
 ```
 
