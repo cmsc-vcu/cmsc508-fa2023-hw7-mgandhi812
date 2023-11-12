@@ -400,7 +400,7 @@ df
 ### List ids and names of unused roles
 
 ```{python}
-sql_skill_unused roles = f"""
+sql_skill_unusedroles = f"""
 SELECT r.id, r.name
 FROM roles r
 LEFT JOIN peopleroles pr ON r.id = pr.role_id
@@ -412,7 +412,7 @@ WHERE pr.id IS NULL;
 #| echo: false
 #| eval: true
 try:
-    df = pd.read_sql(sql_skill_unused roles,cnx)
+    df = pd.read_sql(sql_skill_unusedroles,cnx)
     df
 except Exception as e:
     message = str(e)
