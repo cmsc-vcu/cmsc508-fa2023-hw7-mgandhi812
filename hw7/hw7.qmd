@@ -220,17 +220,12 @@ Let's explore the database!
 
 # List skill names, tags, and descriptions ordered by name
 
-SELECT name, tag, description
-FROM skills
-ORDER BY name;
-
 ```{python}
 sql_skill_info = f"""
 SELECT name, tag, description FROM skills
 ORDER BY name;
 """
 ```
-
 
 (and here is a sample result from the query)
 
@@ -248,8 +243,27 @@ df
 
 ```
 
-
 ### List people names and email addresses ordered by last_name
+
+```{python}
+sql_skill_info = f"""
+SELECT people_first_name, people_last_name, email
+FROM people
+ORDER BY people_last_name;
+"""
+```
+```{python}
+#| echo: false
+#| eval: true
+try:
+    df = pd.read_sql(sql,cnx)
+    df
+except Exception as e:
+    message = str(e)
+    print(f"An error occurred:\n\n{message}\n\nIgnoring and moving on.")
+    df = pd.DataFrame()
+df
+```
 
 
 ### List skill names of Person 1
