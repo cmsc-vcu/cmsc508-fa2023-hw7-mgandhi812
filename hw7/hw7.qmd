@@ -218,7 +218,7 @@ df_skills
 
 Let's explore the database!
 
-# List skill names, tags, and descriptions ordered by name
+### List skill names, tags, and descriptions ordered by name
 
 ```{python}
 sql_skill_info = f"""
@@ -263,7 +263,7 @@ WHERE p.people_id = 1;
 #| echo: false
 #| eval: true
 try:
-    df = pd.read_sql(sql,cnx)
+    df = pd.read_sql(person1_info,cnx)
     df
 except Exception as e:
     message = str(e)
@@ -275,7 +275,7 @@ df
 ### List people names with Skill 6
 
 ```{python}
-sql_skill_info = f"""
+sql_skill6_names = f"""
 SELECT p.people_first_name, p.people_last_name
 FROM people p
 JOIN peopleskills ps ON p.people_id = ps.people_id
@@ -288,7 +288,7 @@ WHERE s.id = 6;
 #| echo: false
 #| eval: true
 try:
-    df = pd.read_sql(sql,cnx)
+    df = pd.read_sql(sql_skill6_names,cnx)
     df
 except Exception as e:
     message = str(e)
@@ -300,7 +300,7 @@ df
 ### List people with a DEVELOPER role
 
 ```{python}
-sql_skill_info = f"""
+sql_skill_developers = f"""
 SELECT p.people_first_name, p.people_last_name
 FROM people p
 JOIN peopleroles pr ON p.people_id = pr.people_id
@@ -313,7 +313,7 @@ WHERE r.name = 'Developer';
 #| echo: false
 #| eval: true
 try:
-    df = pd.read_sql(sql,cnx)
+    df = pd.read_sql(sql_skill_developers,cnx)
     df
 except Exception as e:
     message = str(e)
