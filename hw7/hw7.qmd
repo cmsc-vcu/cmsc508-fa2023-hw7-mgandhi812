@@ -246,24 +246,16 @@ df
 ### List people names and email addresses ordered by last_name
 
 ```{python}
-sql_skill_info = f"""
+query2 = """
 SELECT people_first_name, people_last_name, email
 FROM people
 ORDER BY people_last_name;
 """
-```
 
-```{python}
-#| echo: false
-#| eval: true
-try:
-    df = pd.read_sql(sql,cnx)
-    df
-except Exception as e:
-    message = str(e)
-    print(f"An error occurred:\n\n{message}\n\nIgnoring and moving on.")
-    df = pd.DataFrame()
-df
+result2 = pd.read_sql(query2, engine)
+print("Query 2 Result:")
+print(result2)
+print("\n" + "=" * 50 + "\n")
 ```
 
 
